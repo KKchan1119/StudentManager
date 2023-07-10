@@ -21,7 +21,19 @@ public class StudentEntity {
 	
 	//현재 DB의 가용 공간 상태 : 여유없는경우의 에러
 	public static int ERR_ARRAY_FULL = 2;
+	
 	// StudentEntity 초기화, 객체 배열 생성.
 	
 	// 한 건의 데이터가 저장되는 기능.
+	public int insertStudent(Student stu) {
+		//DB에 저장 가능 한지 확인
+		
+		//배열에 학생정보 저장.
+		
+		//다음 데이터를 위해 DB 관리정보 갱신.
+		
+		//다음 데이터를 DB에 저장할 수 있는 상태인지 체크.
+		
+		return 0;
+	}
 }
