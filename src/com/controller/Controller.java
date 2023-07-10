@@ -17,11 +17,31 @@ public class Controller {
 	// 결과물 출력을 하는 클래스
 	StudentView studentView;
 	
+	public static int ERR_ARRAY_LENGTH = 0;
+	public static int INFO_SUCCESS = 1;
+	public static int DEFAULT_ARRAY_LENGTH =6;
+	
+	
 	// 초기화 및 샘플 데이터 등록 기능
 	public int initController(int arrLength, boolean sampleDataInsert) {
-	
 		
-		return 0;
+		//생성할 배열의 길이가 0이면 Controller.ERR_ARRAY_LENGTH 에러를 반환
+		if(arrLength < 1) return Controller.ERR_ARRAY_LENGTH;
+		
+		//생성할 배열의 길이가 5보다 같거나 작으면 기본 배열 길이를 Controller.DEFAULT_ARRAY_LENGTH 설정.
+		if(arrLength <= 5) arrLength = Controller.DEFAULT_ARRAY_LENGTH;
+		
+		//위 조건문이 문제가 없을때 Entity 객체 생성
+		studentEntity = new StudentEntity();
+		//Entity에서 배열 생성 및 샘플 데이터 입력.
+		initEntity(arrLength, sampleDataInsert);
+		
+		//등록된 데이터 출력.
+		//출력 객체 생성.
+		studentView = new StudentView();
+		
+		//Entity 및 출력 객체 정상 생성. 배열 생성 및 샘플 데이터 저장. => 성공적으로 처리됨.
+		return Controller.INFO_SUCCESS;
 	}
 	
 	// Entity 초기화 
@@ -31,7 +51,7 @@ public class Controller {
 	 * @param sampleDataInser 샘플데이터를 insert 할 건지의 여부
 	 */
 	public void initEntity(int arrLength, boolean sampleDataInsert) {
-		
+		studentEntity.initStudentEntity(arrLength, sampleDataInsert);
 	}
 	
 	// 전제 등록된 데이터 출력 기능
@@ -49,7 +69,7 @@ public class Controller {
 	 * @return 배열의 저장 공간이 없는 경우의 상수값
 	 */
 	public int insertStudent(Student stu) {
-		int result = 0;
+		int result = studentEntity.insertStudent(stu);
 		
 		return result;
 	}

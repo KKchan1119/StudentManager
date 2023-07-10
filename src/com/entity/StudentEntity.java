@@ -36,12 +36,26 @@ public class StudentEntity {
 				
 				//Student 객체 생성.
 				Student student = new Student();
+				student.stuNo = i = 1;
+				student.stuName = "Student" + student.stuNo;
+				student.korScore = 100 - (i*10);
+				student.engScore = 100 - (i*10);
+				student.mathScore = 100 - (i*10);
+				
+				stuArr[i] = student;
+				
+				// DB의 관리용 데이터 갱신
+				nextArrIdx = i + 1;
+				stuNextNo = student.stuNo;
+				
 			}
+			return arrLength;
+		}else {
+			return 0;
 		}
-		//샘플 데이터 입력
-		
-		return 0;
 	}
+	
+	
 	// 한 건의 데이터가 저장되는 기능.
 	public int insertStudent(Student stu) {
 		//DB에 저장 가능 한지 확인
