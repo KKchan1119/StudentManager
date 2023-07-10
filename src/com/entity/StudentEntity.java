@@ -8,8 +8,9 @@ public class StudentEntity {
 	//신규 데이터 저장시 배열의 위치정보
 	int nextArrIdx;
 	
-	int stuArrIdx;
+	//신규 학생정보 생성시 사용할 학번
 	int stuNextNo;
+	
 	//현재 DB의 가용 공간 상태
 	boolean stuArrStatus = false;
 	
@@ -23,6 +24,16 @@ public class StudentEntity {
 	
 	//현재 DB의 가용 공간 상태 : 여유없는경우의 에러
 	public static int ERR_ARRAY_FULL = 2;
+	
+	//Controller 에서 접근하기 위한 메소드
+	public Student[] getStuArr() {
+		return stuArr;
+	}
+	
+	// Controller에서 배열에 실제 저장된 위치 정보에 접근하기 위한 메소드
+	public int getNextArrIdx() {
+		return nextArrIdx;
+	}
 	
 	// StudentEntity 초기화, 객체 배열 생성.
 	public int initStudentEntity(int arrLength, boolean sampleDataInsert) {
@@ -66,7 +77,7 @@ public class StudentEntity {
 		stuArr[nextArrIdx] = stu;
 		//다음 데이터를 위해 DB 관리정보 갱신.
 		stuNextNo += 1;
-		stuArrIdx += 1;
+		nextArrIdx += 1;
 		//다음 데이터를 DB에 저장할 수 있는 상태인지 체크.
 		if(stuArr.length == nextArrIdx)
 			stuArrStatus = StudentEntity.ARRAY_STATUS_FULL;

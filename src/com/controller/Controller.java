@@ -59,7 +59,7 @@ public class Controller {
 	 * 등록된 모든 학생의 성적정보를 출력
 	 */
 	public void searchAllStudent() {
-		
+		studentView.printAllStudents(studentEntity.getStuArr(), studentEntity.getNextArrIdx());
 	}
 	
 	// 한 건의 데이터가 저장되는 기능
